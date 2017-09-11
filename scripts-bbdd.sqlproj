@@ -63,6 +63,7 @@
   <ItemGroup>
     <None Include="DataPilotTW\Pipeline-Dependencies.sql" />
     <None Include="DataPilotTW\trabajoGestorCarga.sql" />
+    <None Include="DataPilotTW\GestorCargaX.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DataPilotTW\Codigo\BI_PRODUCCION.dbo.RC_CARGA_Ratios_Conv_en_SRSPSS.sql" />
