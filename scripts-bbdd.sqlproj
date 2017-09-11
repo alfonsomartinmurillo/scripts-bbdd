@@ -58,9 +58,13 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="DataPilotTW" />
+    <Folder Include="DataPilotTW\Codigo" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DataPilotTW\Pipeline-Dependencies.sql" />
     <None Include="DataPilotTW\trabajoGestorCarga.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DataPilotTW\Codigo\BI_PRODUCCION.dbo.RC_CARGA_Ratios_Conv_en_SRSPSS.sql" />
   </ItemGroup>
 </Project>

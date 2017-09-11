@@ -1,6 +1,7 @@
 ﻿--COMUN..GESTORCARGAX 'XAUTOS.Diario_Produccion1',0
 --comun.dbo.gestorcarga 'dw_autos.Produccion3'
 
+-- EJEMPLO SCRIPT PARA OBTENER INFORMACIÓN DE GESTORCARGA
 SELECT 
 	* 
 FROM 
@@ -12,9 +13,9 @@ ON
 	and DW.Esquema = a.Esquema
 	and DW.tablaDWH=a.tabladwh
 where 
-	A.basedatos='DW_AUTOS'
+	A.basedatos='DW_MUTUA'
 	AND
-	A.SUBAREA='PRODUCCION3'
+	A.SUBAREA='DIARIO'
 	AND 
 	A.ENUSO='S'
 
