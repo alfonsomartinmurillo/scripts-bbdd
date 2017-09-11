@@ -1,4 +1,8 @@
 ﻿--select top 100 * from dbo.rutascontencion
+--SET STATISTICS IO ON
+
+--SELECT * FROM DBO.OBJETOSTIPOS WHERE TIPOOBJETO='Cadena de Control-M' -- 134
+--SELECT * FROM DBO.RUTASCONTENCION
 select 
  	-- OBJ_BUSCADOS.ID_OBJETO_BUSCADO,
 	obj_buscados.RUTA_OBJETO_BUSCADO AS OBJETO_ANALIZADO, --obj_buscados.RUTA_TIPADA_OBJETO_BUSCADO,
@@ -41,6 +45,12 @@ INNER JOIN
 	WHERE 
 		rutaContencionTipada IN 
 			(
+			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::xautos//Esquema::dbo//Procedimiento Almacenado::pr_Carga_xTalleres_H_EsTallerActual',
+			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::XDIM//Esquema::autos//Procedimiento Almacenado::pr_Carga_Dim_Diario_Comun',
+			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::XDIM//Esquema::autos//Procedimiento Almacenado::pr_carga_dim_diario_certificadosiniestralidad',
+			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::XDIM//Esquema::autos//Procedimiento Almacenado::Pr_carga_dim_diario_produccion',
+			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::BI_PRODUCCION//Esquema::dbo//Procedimiento Almacenado::GESTOR_CARGADIMCOMUNES_PRODUCCION',
+			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::BI_PRODUCCION//Esquema::dbo//Procedimiento Almacenado::Rc_generar_th_ratios_conversion',
 			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::BI_PRODUCCION//Esquema::dbo//Procedimiento Almacenado::Rc_carga_ratios_conv_en_srspss'
 			)
 	) OBJ_BUSCADOS
@@ -48,12 +58,23 @@ ON
 	((RO.idobjeto=OBJ_BUSCADOS.Id_Objeto_buscado) OR (RO.IdObjetoRelacionado=OBJ_BUSCADOS.id_objeto_buscado))
 WHERE
 	-- LISTADO DE RELACIONES QUE EXCLUYO
-	RT.TipoRelacion NOT IN ('CONTENCION', 'DEPENDENCIA')
+	RT.TipoRelacion IN ('Flujo de Datos') --NOT IN ('CONTENCION', 'DEPENDENCIA')
 	-- OBJETOS QUE ME INTERESA EXCLUIR
 	-- EXCLUYO LAS RELACIONES CONMIGO MISMO
 	AND
 		RCOBJA.idobjeto <> RCOBJB.idobjeto
 	AND
-		RCOBJA.TipoObjeto NOT IN ('Cadena de Control-M') 
+		RCOBJA.IDTipoObjeto NOT IN (134) 
 	AND 
-		RCOBJB.TipoObjeto NOT IN ('Cadena de Control-M')
+		RCOBJB.IDTipoObjeto NOT IN (134)
+	and 
+		(
+		--excluimos las posibles relaciones a tablas temporales
+		RCOBJA.RUTACONTENCION NOT LIKE ('Producción//SRDWPRO1//tmp//%')
+		and 
+		RCOBJB.RUTACONTENCION NOT LIKE 'Producción//SRDWPRO1//tmp//%'
+		)
+
+
+ORDER BY OBJETO_ANALIZADO
+--SET STATISTICS IO OFF

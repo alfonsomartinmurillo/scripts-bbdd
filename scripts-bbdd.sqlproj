@@ -61,5 +61,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="DataPilotTW\Pipeline-Dependencies.sql" />
+    <None Include="DataPilotTW\trabajoGestorCarga.sql" />
   </ItemGroup>
 </Project>
