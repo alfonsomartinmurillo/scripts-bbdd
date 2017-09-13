@@ -61,11 +61,16 @@
     <Folder Include="DataPilotTW\Codigo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="DataPilotTW\Pipeline-Dependencies.sql" />
+    <None Include="DataPilotTW\NEXUS-Pipeline-Dependencies.sql" />
     <None Include="DataPilotTW\trabajoGestorCarga.sql" />
     <None Include="DataPilotTW\GestorCargaX.sql" />
+    <None Include="DataPilotTW\Codigo\comun.dbo.gestorcarga.sql" />
+    <None Include="DataPilotTW\Codigo\XAUTOS.DBO.PR_CARGA_XCONVERSIONES.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DataPilotTW\Codigo\BI_PRODUCCION.dbo.RC_CARGA_Ratios_Conv_en_SRSPSS.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DataPilotTW\GestorCarga - Dependencias DW.sql" />
   </ItemGroup>
 </Project>

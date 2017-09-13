@@ -12,6 +12,10 @@ select
 		else RCOBJA.rutaContencion
 	end as OBJETO_DEPENDIENTE,
 	case
+		when obj_buscados.RUTA_OBJETO_BUSCADO = RCOBJA.rutaContencion then RCOBJB.Rutacontenciontipada
+		else RCOBJA.rutaContenciontipada
+	end as OBJETO_DEPENDIENTE_TIPADO,
+	case
 		when obj_buscados.RUTA_OBJETO_BUSCADO = RCOBJA.rutaContencion then RCOBJB.TipoObjeto
 		else RCOBJA.TipoObjeto
 	end as TIPO_OBJETO_DEPENDIENTE,
@@ -45,13 +49,30 @@ INNER JOIN
 	WHERE 
 		rutaContencionTipada IN 
 			(
+			/*
 			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::xautos//Esquema::dbo//Procedimiento Almacenado::pr_Carga_xTalleres_H_EsTallerActual',
 			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::XDIM//Esquema::autos//Procedimiento Almacenado::pr_Carga_Dim_Diario_Comun',
 			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::XDIM//Esquema::autos//Procedimiento Almacenado::pr_carga_dim_diario_certificadosiniestralidad',
 			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::XDIM//Esquema::autos//Procedimiento Almacenado::Pr_carga_dim_diario_produccion',
 			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::BI_PRODUCCION//Esquema::dbo//Procedimiento Almacenado::GESTOR_CARGADIMCOMUNES_PRODUCCION',
 			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::BI_PRODUCCION//Esquema::dbo//Procedimiento Almacenado::Rc_generar_th_ratios_conversion',
-			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::BI_PRODUCCION//Esquema::dbo//Procedimiento Almacenado::Rc_carga_ratios_conv_en_srspss'
+			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::BI_PRODUCCION//Esquema::dbo//Procedimiento Almacenado::Rc_carga_ratios_conv_en_srspss',
+			*/
+			-- objetos que tienen que ver con el propio proceso de XCONVERSIONES
+			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::xautos//Esquema::dbo//Procedimiento Almacenado::Pr_carga_xconversiones',		
+			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::xautos//Esquema::dbo//Vista::Xpolizas_comun',
+			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::xautos//Esquema::dbo//Vista::XPOLIZAS_IMPUTACION',
+			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::xautos//Esquema::dbo//Vista::Xverificaciones',
+			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::XDIM//Esquema::autos//Tabla::Productos',
+			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::xautos//Esquema::dbo//Vista::XCONVERSIONES',
+			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::xautos//Esquema::dbo//Vista::Xcotizaciones',
+			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::xautos//Esquema::dbo//Vista::Xpresupuestos',
+			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::xautos//Esquema::dbo//Vista::MARCAS',
+			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::DW_AUTOS//Esquema::dbo//Sinónimo::TAUTLINK',
+			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::DW_AUTOS//Esquema::dbo//Tabla::TAULOIPR',
+			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::DW_AUTOS//Esquema::dbo//Vista::PRESUPUESTOS_Y_TASACIONES_POLIZAS',
+			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::XDIM//Esquema::autos//Tabla::Negocios',
+			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::xautos//Esquema::dbo//Vista::XCONVERSIONES'
 			)
 	) OBJ_BUSCADOS
 ON
