@@ -19,7 +19,7 @@ where
 	AND 
 	A.ENUSO='S'
 
-SELECT * FROM CFG_AREAS -- BASE DE DATOS Y ÁREA
+SELECT * FROM CFG_AREAS where tabladwh like 'tauinsve%'  -- BASE DE DATOS Y ÁREA 
 
 SELECT 
 	* 

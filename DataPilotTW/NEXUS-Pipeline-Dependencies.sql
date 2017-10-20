@@ -59,7 +59,8 @@ INNER JOIN
 			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::BI_PRODUCCION//Esquema::dbo//Procedimiento Almacenado::Rc_carga_ratios_conv_en_srspss',
 			*/
 			-- objetos que tienen que ver con el propio proceso de XCONVERSIONES
-			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::xautos//Esquema::dbo//Procedimiento Almacenado::Pr_carga_xconversiones',		
+			--'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::xautos//Esquema::dbo//Procedimiento Almacenado::Pr_carga_xconversiones',		
+			/*
 			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::xautos//Esquema::dbo//Vista::Xpolizas_comun',
 			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::xautos//Esquema::dbo//Vista::XPOLIZAS_IMPUTACION',
 			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::xautos//Esquema::dbo//Vista::Xverificaciones',
@@ -73,10 +74,26 @@ INNER JOIN
 			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::DW_AUTOS//Esquema::dbo//Vista::PRESUPUESTOS_Y_TASACIONES_POLIZAS',
 			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::XDIM//Esquema::autos//Tabla::Negocios',
 			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::xautos//Esquema::dbo//Vista::XCONVERSIONES'
+			*/
+			-- nivel 3
+			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::DW_AUTOS//Esquema::dbo//Procedimiento Almacenado::ComprobacionCargaPresupuestos',
+			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::DW_AUTOS//Esquema::dbo//Procedimiento Almacenado::ParcheTauloiprAñadeIds',
+			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::xautos//Esquema::dbo//Procedimiento Almacenado::Pr_carga_marcas',
+			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::xautos//Esquema::dbo//Procedimiento Almacenado::Pr_carga_xconversiones',
+			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::xautos//Esquema::dbo//Procedimiento Almacenado::Pr_carga_xcotizaciones',
+			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::xautos//Esquema::dbo//Procedimiento Almacenado::Pr_carga_xpolizas_comun',
+			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::xautos//Esquema::dbo//Procedimiento Almacenado::Pr_Carga_XPolizas_Imputacion',
+			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::xautos//Esquema::dbo//Procedimiento Almacenado::Pr_carga_xpresupuestos',
+			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::xautos//Esquema::dbo//Procedimiento Almacenado::Pr_carga_xverificaciones',
+			'Entorno::Producción//SubEntorno::SRDWPRO1//Base de Datos::xautos//Esquema::dbo//Procedimiento Almacenado::pr_carga_xverificaciones_opttablonratios'
 			)
 	) OBJ_BUSCADOS
 ON
-	((RO.idobjeto=OBJ_BUSCADOS.Id_Objeto_buscado) OR (RO.IdObjetoRelacionado=OBJ_BUSCADOS.id_objeto_buscado))
+	(
+		--(RO.idobjeto=OBJ_BUSCADOS.Id_Objeto_buscado) 
+		--OR 
+		(RO.IdObjetoRelacionado=OBJ_BUSCADOS.id_objeto_buscado)
+	)
 WHERE
 	-- LISTADO DE RELACIONES QUE EXCLUYO
 	RT.TipoRelacion IN ('Flujo de Datos') --NOT IN ('CONTENCION', 'DEPENDENCIA')
